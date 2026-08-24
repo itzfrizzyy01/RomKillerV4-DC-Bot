@@ -6,7 +6,7 @@ import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
-const dashboardPath = path.resolve(process.cwd(), "artifacts/romkillerv4-dashboard/dist/public");
+const dashboardPath = path.resolve(process.cwd(), "../romkillerv4-dashboard/dist/public");
 
 app.use(
   pinoHttp({
@@ -26,7 +26,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api", router);
 
-// Serve the built dashboard from the same Render service as the API.
 app.use(express.static(dashboardPath));
 app.use((req, res, next) => {
   if (req.method === "GET" && !req.path.startsWith("/api") && req.accepts("html")) {
