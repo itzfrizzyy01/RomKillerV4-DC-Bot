@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "RomKillerV4 Control Center"
+description = "A premium control center for a modular Discord community bot, with moderation, security, tickets, economy, Minecraft monitoring, AI tools, analytics, giveaways, and configurable server settings."
+version = "1.0.0"
+id = "artifacts/romkillerv4-dashboard"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24319
+
+[services.development]
+run = "pnpm --filter @workspace/romkillerv4-dashboard run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/romkillerv4-dashboard", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/romkillerv4-dashboard/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24319"
+BASE_PATH = "/"

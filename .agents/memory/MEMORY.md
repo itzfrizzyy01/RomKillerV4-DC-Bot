@@ -1,0 +1,1 @@
+- [RomKillerV4 architecture](romkillerv4-architecture.md) — keep community bot capabilities split into independently enabled modules behind generated API contracts.
